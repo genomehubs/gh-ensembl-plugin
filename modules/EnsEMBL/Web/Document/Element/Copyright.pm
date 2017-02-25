@@ -48,9 +48,6 @@ my $site_version = $self->hub->species_defs->SITE_RELEASE_VERSION;
 my $site_date = $self->hub->species_defs->SITE_RELEASE_DATE;
 my $html = '<div class=lb-ackn-logos>';
 $html .= '<a href="http://ed.ac.uk"><img title="University of Edinburgh" class="lb-footer-logo" src="/img/edinburgh_logo.png"></a>';
-$html .= '<a href="http://cam.ac.uk"><img title="University of Cambridge" class="lb-footer-logo" src="/img/cambridge_logo.jpg"></a>';
-$html .= '<a href="http://york.ac.uk"><img title="University of York" class="lb-footer-logo" src="/img/york_logo.jpg"></a>';
-$html .= '<a href="http://bbsrc.ac.uk"><img title="bbsrc" class="lb-footer-logo" src="/img/bbsrc_logo.jpg"></a>';
 
 $html .= '</div>';
 
