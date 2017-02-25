@@ -43,7 +43,7 @@ sub menus {
 ##
 
 ## ParaSite
-    lepbase_rnaseq     => 'RNA-Seq Alignments',
+    genomehubs_rnaseq    => 'RNA-Seq Alignments',
 ##
 
 ## EG used to organise fungi/protists external tracks

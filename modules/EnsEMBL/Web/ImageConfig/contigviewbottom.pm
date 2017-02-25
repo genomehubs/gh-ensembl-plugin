@@ -41,7 +41,7 @@ sub init {
     dna_align_est
     dna_align_rna
     dna_align_other
-    lepbase_rnaseq
+    genomehubs_rnaseq
     protein_align
     protein_feature
     rnaseq
@@ -209,7 +209,7 @@ sub init {
 
   ## ParaSite
     $self->modify_configs( ['dna_align_ncrna_pred'], {'display'=>'as_alignment_label'} );
-    $self->modify_configs( ['lepbase_rnaseq'], {'strand'=>'r'} );
+    $self->modify_configs( ['genomehubs_rnaseq'], {'strand'=>'r'} );
   ##
 
 }
