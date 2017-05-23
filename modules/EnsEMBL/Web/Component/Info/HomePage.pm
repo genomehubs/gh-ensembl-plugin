@@ -314,7 +314,7 @@ sub content {
       my $value = $p->{$group}{$key};
       next unless $value;
       if ($key eq 'url'){
-        $value = '<a href="'.$value.''">'.$value.'</a>'
+        $value = '<a href="'.$value.'">'.$value.'</a>'
       }
       $table .= '<tr><td class="lb-meta-group">'.$g.'</td><td class="lb-meta-key">'.$k.'</td><td class="lb-meta-value">'.$value.'</td></tr>';
       $added{$key}++;
