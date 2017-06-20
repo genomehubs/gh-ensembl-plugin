@@ -1,12 +1,12 @@
 /*
  * Copyright [1999-2014] Wellcome Trust Sanger Institute and the EMBL-European Bioinformatics Institute
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,7 +20,7 @@
   General font sizes and styles...
 ----------------------------------------------------------------------*/
 
-body      { font-family: Luxi Sans, Helvetica, Arial, Geneva, sans-serif; 
+body      { font-family: Luxi Sans, Helvetica, Arial, Geneva, sans-serif;
             font-size:80%; color: [[PAGE_TEXT]]; background-color: [[PAGE_BG]];
             padding: 0; margin: 0; border: 0; }
 body.ie6  { font-size:85%; }
@@ -58,9 +58,9 @@ body.ie6 #min_width_holder    { display: inline-block; position: relative; margi
 .hidden  { display: none; }
 .hide    { display: none; } /* need to remove this if we can */
 .page    { text-align: center; padding: 0.25em; }
-.spinner { height: 100px; display: block; border: 16px solid transparent; margin: 0 0 16px; text-align: center; background: url(/i/e-loader.gif) no-repeat bottom center; }
+.spinner { height: 220px; display: block; border: 16px solid transparent; margin: 0 0 16px; text-align: center; background: url(/i/e-loader.gif) no-repeat bottom center; }
 .pointer { cursor: pointer; }
-body.ie6 .spinner { background-color: [[PAGE_BG]]; border-color: [[PAGE_BG]]; height: 132px; }
+body.ie6 .spinner { background-color: [[PAGE_BG]]; border-color: [[PAGE_BG]]; height: 252px; }
 
 /*----------------------------------------------------------------------
   Manual margin settings - to override any existing margins
@@ -101,7 +101,7 @@ body.mac h2     { padding-top: 4px; }
 
 
 /*----------------------------------------------------------------------
- Links 
+ Links
 ----------------------------------------------------------------------*/
 a               { color: [[PAGE_LINK]];    } /* neutral style for anchor target */
 a:visited       { color: [[PAGE_VISITED]]; }
