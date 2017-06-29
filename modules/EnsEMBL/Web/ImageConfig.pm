@@ -43,7 +43,7 @@ sub menus {
 ##
 
 ## ParaSite
-    parasite_rnaseq     => 'RNA-Seq Alignments',
+    genomehubs_rnaseq     => 'RNA-Seq Alignments',
     community_annotation => 'Community Annotation',
 ##
 
