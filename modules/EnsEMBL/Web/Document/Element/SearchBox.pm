@@ -18,7 +18,7 @@ limitations under the License.
 
 =head1 MODIFICATIONS
 
-Copyright [2014-2016] University of Edinburgh
+Copyright [2014-2018] University of Edinburgh
 
 All modifications licensed under the Apache License, Version 2.0, as above.
 
@@ -31,6 +31,17 @@ package EnsEMBL::Web::Document::Element::SearchBox;
 use strict;
 
 use base qw(EnsEMBL::Web::Document::Element);
+
+sub species {
+  ## Ignores common and Multi as species names
+  my $species = $_[0]->hub->species;
+  return $species =~ /multi|common/i ? '' : $species;
+}
+
+sub default_search_code {
+  ## Returns the search code either set by the user previously by selecting one of the options in the drodpown, or defaults to the one specified in sitedefs
+  return $_[0]->{'_default'} ||= $_[0]->hub->get_cookie_value('ENSEMBL_SEARCH') || $_[0]->species_defs->ENSEMBL_DEFAULT_SEARCHCODE || 'ensembl';
+}
 
 ## BEGIN LEPBASE MODIFICATIONS...
 sub search_options {

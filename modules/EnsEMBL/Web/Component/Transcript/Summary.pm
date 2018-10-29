@@ -1,6 +1,7 @@
 =head1 LICENSE
 
-Copyright [1999-2016] Wellcome Trust Sanger Institute and the EMBL-European Bioinformatics Institute
+Copyright [1999-2015] Wellcome Trust Sanger Institute and the EMBL-European Bioinformatics Institute
+Copyright [2016-2018] EMBL-European Bioinformatics Institute
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -18,7 +19,7 @@ limitations under the License.
 
 =head1 MODIFICATIONS
 
-Copyright [2016] University of Edinburgh
+Copyright [2018] University of Edinburgh
 
 All modifications licensed under the Apache License, Version 2.0, as above.
 
@@ -28,22 +29,57 @@ package EnsEMBL::Web::Component::Transcript::Summary;
 
 use strict;
 use warnings;
-use EnsEMBL::Web::Component::Shared;
 no warnings 'uninitialized';
 
-use HTML::Entities qw(encode_entities);
+use base qw(EnsEMBL::Web::Component::Transcript);
 
-use previous qw(
-  content
-);
+sub _init {
+  my $self = shift;
+  $self->cacheable(0);
+  $self->ajaxable(0);
+}
+
+# status warnings would be eg out-of-date page, dubious evidence, etc
+# which need to be displayed prominently at the top of a page. Only used
+# in Vega plugin at the moment, but probably more widely useful.
+sub status_warnings { return undef; }
+sub status_hints    { return undef; }
 
 sub content {
   my $self = shift;
+  my $object = $self->object;
 
-##################################
-### BEGIN LEPBASE MODIFICATIONS...
-##################################
-  my $html = $self->PREV::content();
+  return sprintf '<p>%s</p>', $object->Obj->description if $object->Obj->isa('EnsEMBL::Web::Fake');
+
+  my $html = "";
+ 
+  if ($object->Obj->isa('Bio::EnsEMBL::Transcript')) {
+
+    my @warnings = $self->status_warnings;
+    if(@warnings>1 and $warnings[0] and $warnings[1]) {
+      $html .= $self->_info_panel($warnings[2]||'warning',
+                                $warnings[0],$warnings[1]);
+    }
+    my @hints = $self->status_hints;
+    if(@hints>1 and $hints[0] and $hints[1]) {
+      $html .= $self->_hint($hints[2],$hints[0],$hints[1]);
+    }
+    $html .= $self->transcript_table;
+  }
+  else {
+    my ($function, $text);
+    if ($self->hub->action =~ /Prot|Domain/) {
+      $function = 'Protein';
+      $text     = 'Protein';
+    }
+    else {
+      $text     = 'Transcript';
+    }
+    my $url = $self->hub->url({'action' => 'Idhistory', 'function' => $function});
+    $html = sprintf '<p>This transcript is not in the current gene set. Previous versions of the %s may be available on the <a href="%s">%s History page</a>.</p>', lc($text), $url, $text; 
+  }
+
+## Begin GenomeHubs Modifications
 
   my $hub         = $self->hub;
   my $object      = $self->object;
@@ -77,9 +113,9 @@ sub content {
   $table->add_row('BLAST',$blast_html);
 
   $html .= sprintf '<div class="summary_panel">%s</div>', $table->render;
-##################################
-### ...END LEPBASE MODIFICATIONS
-##################################
+
+## End GenomeHubs Modifications
+
   return $html;
 }
 

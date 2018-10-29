@@ -1,6 +1,7 @@
 =head1 LICENSE
 
-Copyright [2009-2014] EMBL-European Bioinformatics Institute
+Copyright [1999-2015] Wellcome Trust Sanger Institute and the EMBL-European Bioinformatics Institute
+Copyright [2016-2018] EMBL-European Bioinformatics Institute
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -18,7 +19,7 @@ limitations under the License.
 
 =head1 MODIFICATIONS
 
-Copyright [2014-2015] University of Edinburgh
+Copyright [2018] University of Edinburgh
 
 All modifications licensed under the Apache License, Version 2.0, as above.
 
@@ -26,22 +27,20 @@ All modifications licensed under the Apache License, Version 2.0, as above.
 
 package EnsEMBL::Web::Document::Element::FooterLinks;
 
-### Replacement footer links for www.ensembl.org
+### Generates release info for the footer
 
 use strict;
 
-sub content {
+use base qw(EnsEMBL::Web::Document::Element);
 
-## BEGIN LEPBASE MODIFICATIONS...
-  return qq(
-    <div class="twocol-right right">
-      <a href="https://bitbucket.org/lepbase/lepbase/issues?status=new&status=open" title="report an issue">report an issue</a> |
-      <a href="http://www.lepbase.org" title="lepbase.org">lepbase.org</a> |
-      <a href="mailto:contact\@lepbase.org" title="contact\@lepbase.org">contact us</a> |
-      <a href="http://www.ensembl.org/" title="ensembl.org"><img style="height:auto;margin-top:-5px;background:none;border:none;" src="/i/empowered.png"></img></a>
-    </div>)
-  ;
-## ...END LEPBASE MODIFICATIONS
+sub content {
+  my $species_defs = shift->species_defs;
+## Begin GenomeHubs Modifications
+  my $link = sprintf '<a href="%s">visit %s</a>', $species_defs->PROJECT_URL, $species_defs->PROJECT_URL_TITLE;
+  my $issue = sprintf '<a href="%s">%s</a>', $species_defs->ISSUE_TRACKER_URL, $species_defs->ISSUE_TRACKER_TITLE;
+  my $contact = sprintf '<a href="mailto:%s">contact us</a>', $species_defs->ENSEMBL_SERVERADMIN;
+  return sprintf '<div class="column-two right"><p>%s release %s - %s<br/>%s | %s | %s</p></div>', $species_defs->ENSEMBL_SITE_NAME, $species_defs->SITE_RELEASE_VERSION, $species_defs->SITE_RELEASE_DATE, $link, $issue, $contact;
+## End GenomeHubs Modifications
 }
 
 1;

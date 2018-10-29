@@ -1,6 +1,7 @@
 =head1 LICENSE
 
-Copyright [2009-2014] EMBL-European Bioinformatics Institute
+Copyright [1999-2015] Wellcome Trust Sanger Institute and the EMBL-European Bioinformatics Institute
+Copyright [2016-2018] EMBL-European Bioinformatics Institute
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -18,7 +19,7 @@ limitations under the License.
 
 =head1 MODIFICATIONS
 
-Copyright [2014-2015] University of Edinburgh
+Copyright [2018] University of Edinburgh
 
 All modifications licensed under the Apache License, Version 2.0, as above.
 
@@ -26,24 +27,19 @@ All modifications licensed under the Apache License, Version 2.0, as above.
 
 package EnsEMBL::Web::Document::Element::ToolLinks;
 
-### Generates links to site tools - BLAST, help, login, etc (currently in masthead)
+### Generates links in masthead
 
 use strict;
+use warnings;
 
-sub content {
-  my $self    = shift;
-  my $hub     = $self->hub;
-  my $species = $hub->species;
-     $species = !$species || $species eq 'Multi' || $species eq 'common' ? 'Multi' : $species;
-  my @links; # = sprintf '<a class="constant" href="%s">Home</a>', $self->home;
-#  push @links, qq{<a class="constant" href="/$species/blastview">BLAST</a>} if $self->blast;
-###EG
-  if ($self->hub->species_defs->ENSEMBL_ENASEARCH_ENABLED) {
-      push @links,   '<a class="constant" href="/Multi/enasearch">Sequence Search</a>';
-  }
+use parent qw(EnsEMBL::Web::Document::Element);
 
-## BEGIN LEPBASE MODIFICATIONS...
+sub links {
+  my $self  = shift;
+  my $hub   = $self->hub;
   my $sd    = $self->species_defs;
+  my @links;
+
   my $blast_url = $self->hub->species_defs->BLAST_URL;
   my $download_url = $self->hub->species_defs->DOWNLOAD_URL;
   my $project_url = $self->hub->species_defs->PROJECT_URL;
@@ -54,12 +50,25 @@ sub content {
   push @links,   '<a href="'.$project_url.'" title="$project_url_title"><div class="lb-menu-category"><img title="'.$project_url_title.'" src="/i/project-icon.png" class="lb-menu-linkicon"/>'.$project_url_title.'</div></a>';
   push @links,   '<a href="'.$help_url.'" title="Help"><div class="lb-menu-category"><img title="lepbase" src="/i/help-icon.png" class="lb-menu-linkicon"/>Help</div></a>';
 
-## ...END LEPBASE MODIFICATIONS
-  my $tools = join '', @links;
+  return \@links;
+}
+
+sub content {
+  my $self    = shift;
+  my $hub     = $self->hub;
+  my $links   = $self->links;
+#  my $menu    = '';
+
+  my $tools = join '', @$links;
   $tools = '<div class="lb-tools-holder">'.$tools.'</div>';
   return qq{
     $tools
   };
+#  while (my (undef, $link) =  splice @$links, 0, 2) {
+#    $menu .= sprintf '<li%s>%s</li>', @$links ? '' : ' class="last"', $link;
+#  }
+#
+#  return qq(<ul class="tools">$menu</ul><div class="more"><a href="#">More <span class="arrow">&#9660;</span></a></div>);
 }
 
 1;

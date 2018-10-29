@@ -16,6 +16,15 @@ limitations under the License.
 
 =cut
 
+=head1 MODIFICATIONS
+
+Copyright [2014-2018] University of Edinburgh
+
+All modifications licensed under the Apache License, Version 2.0, as above.
+
+=cut
+
+
 # $Id: HomePage.pm,v 1.69 2014-01-17 16:02:23 jk10 Exp $
 
 package EnsEMBL::Web::Component::Info::HomePage;
@@ -23,8 +32,8 @@ package EnsEMBL::Web::Component::Info::HomePage;
 use strict;
 
 use EnsEMBL::Web::Document::HTML::HomeSearch;
-use EnsEMBL::Web::DBSQL::ProductionAdaptor;
-use EnsEMBL::Web::Component::GenomicAlignments;
+#use EnsEMBL::Web::DBSQL::ProductionAdaptor;
+#use EnsEMBL::Web::Component::GenomicAlignments;
 use EnsEMBL::Web::Controller::SSI;
 use EnsEMBL::Web::Document::Table;
 
@@ -175,8 +184,7 @@ sub content {
     $provider_link = $hub->make_link_tag(text => $species_defs->PROVIDER_NAME, url => $species_defs->PROVIDER_URL) . " | ";
   }
 
-###
-# BEGIN LEPBASE MODIFICATION...
+## Begin GenomeHubs Modifications
 
   my $html = '';
 
@@ -401,8 +409,8 @@ sub content {
 
   $html .= '</div></div></div>';
 
-# ...END LEPBASE MODIFICATION
-###
+## End GenomeHubs  Modifications
+
 
   my $ext_source_html = $self->external_sources;
   $html .= '<div class="column-wrapper"><div class="round-box tinted-box unbordered">' . $ext_source_html . '</div></div>' if $ext_source_html;

@@ -36,6 +36,7 @@
   background-color: [[PAGE_BG]];
   overflow: hidden;
   padding:6px;
+  white-space:nowrap;
 }
 
 .lb-extra-species-box a {
@@ -102,6 +103,19 @@ a.lb-alternate-assemblies:hover {
   display: block;
   height: 48px;
   width: 48px;
+}
+
+.lb-extra-sp-img {
+  float: left;
+  margin-right: 4px;
+  text-decoration: none;
+}
+
+.lb-extra-sp-img img {
+  display: block;
+  height: 16px;
+  width: 16px;
+  vertical-align:center;
 }
 
 .lb-info-box {
@@ -311,4 +325,43 @@ div.cookie-message {
   .lb-meta-table {
     width: 100%;
   }
+}
+
+
+#masthead .logo_holder .logo-header {
+  background-size: cover;
+}
+
+#min_width_holder {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#masthead {
+  flex: 0 0 80px;
+}
+
+#main_holder {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#widemain {
+  flex: 1 0 auto;
+}
+
+div#wide-footer {
+  margin: 10px 0 0 0 !important;
+  flex: 0 0 45px;
+}
+
+#masthead ul.tabs a, #masthead ul.tabs span.dropdown {
+  display: inline-block;
+}
+
+#masthead div.dropdown.species ul li {
+  background: none;
+  padding: none;
 }
