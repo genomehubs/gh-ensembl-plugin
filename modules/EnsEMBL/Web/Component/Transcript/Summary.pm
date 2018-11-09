@@ -99,17 +99,15 @@ sub content {
   		last if $title eq $transcripts->[$i]->stable_id;
   	}
   }
-  my $seq = $transcripts->[$index]->seq()->seq();
-  $blast_html = $self->sequenceserver_button($title,$seq,'Transcript');
-  $seq = undef;
-  $seq = $transcripts->[$index]->spliced_seq();
-  $blast_html .= $self->sequenceserver_button($title,$seq,'cDNA') if $seq;
+  #$blast_html = $self->sequenceserver_button($species.'__transcript__'.$title,'Transcript');
+  my $seq = $transcripts->[$index]->spliced_seq();
+  $blast_html .= $self->sequenceserver_button($species.'__cdna__'.$title,'cDNA') if $seq;
   $seq = undef;
   $seq = $transcripts->[$index]->translateable_seq();
-  $blast_html .= $self->sequenceserver_button($title,$seq,'CDS') if $seq;
+  $blast_html .= $self->sequenceserver_button($species.'__cds__'.$title,'CDS') if $seq;
   $seq = undef;
   $seq = $transcripts->[$index]->translate()->seq();
-  $blast_html .= $self->sequenceserver_button($transcripts->[$index]->stable_id,$seq,'Protein') if $seq;
+  $blast_html .= $self->sequenceserver_button($species.'__protein__'.$transcripts->[$index]->translation->stable_id,'Protein') if $seq;
   $table->add_row('BLAST',$blast_html);
 
   $html .= sprintf '<div class="summary_panel">%s</div>', $table->render;

@@ -19,7 +19,7 @@ limitations under the License.
 
 =head1 MODIFICATIONS
 
-Copyright [1014-2018] University of Edinburgh
+Copyright [2014-2018] University of Edinburgh
 
 All modifications licensed under the Apache License, Version 2.0, as above.
 
@@ -1642,19 +1642,19 @@ sub display_items_list {
 
 ## Begin GenomeHubs Modifications
 sub sequenceserver_button {
-    my ($self,$title,$sequence,$label) = @_;
+    my ($self,$title,$label) = @_;
     my $blast_url = $self->hub->species_defs->BLAST_URL;
     my $button = '
-        <form id="nt_blast_form_'.$label.'" target="_blank" action="'.$blast_url.'" method="POST">
-            <input type="hidden" name="input_sequence" value=">'.$title."\n".$sequence.'">
-            '.sequenceserver_link($title,$sequence,$label).'
+        <form id="nt_blast_form_'.$label.'" target="_blank" action="'.$blast_url.'" method="GET">
+            <input type="hidden" name="query" value="'.$title.'">
+            '.sequenceserver_link($label).'
         </form>';
 
     return $button;
 }
 
 sub sequenceserver_link {
-    my ($title,$sequence,$label) = @_;
+    my $label = shift;
     my $link = '<a href="#" onclick="document.getElementById(\'nt_blast_form_'.$label.'\').submit();" class="button toggle no_img" style="float:left" title="Click to BLAST against Lepidoptera genes and genomes (opens a new window)">'.$label.'</a>';
     return $link;
 }

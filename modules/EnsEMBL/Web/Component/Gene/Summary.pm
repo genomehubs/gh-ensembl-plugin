@@ -77,11 +77,10 @@ sub content {
   my $gene        = $object->Obj;
 
   # add blast links
-  my $title = $object->stable_id;
+  my $title = $species.'__gene__'.$object->stable_id;
   my $slice = $object->slice;
   my $blast_html;
-  my $seq = $slice->{'seq'} || $slice->seq(1);
-  $blast_html = $self->sequenceserver_button($title,$seq,'Gene');
+  $blast_html = $self->sequenceserver_button($title,'Gene');
 
   $table->add_row('BLAST',$blast_html);
 
