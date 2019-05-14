@@ -41,7 +41,7 @@ $(function(){
     $(function() {
           $("#se_q").autocomplete({
                 source: function(request, response) {
-    				$.getJSON("/autocomplete", { term: request.term, table: $('#search_table').val(), search_db_name: $('#search_db_name').val(), search_db_host: $('#search_db_host').val(), search_db_port: $('#search_db_port').val(), search_db_user: $('#search_db_user').val() },
+    				$.getJSON(SEARCH_HOST+"/autocomplete", { term: request.term, table: $('#search_table').val(), search_db_name: $('#search_db_name').val(), search_db_host: $('#search_db_host').val(), search_db_port: $('#search_db_port').val(), search_db_user: $('#search_db_user').val() },
               		response);
   				},
                 minLength: 3,
@@ -77,7 +77,7 @@ $(function(){
       $(function() {
           $("#term").autocomplete({
                 source: function(request, response) {
-    				    $.getJSON("/autocomplete", { term: request.term, table: $('#table').val(), search_db_name: $('#search_db_name').val(), search_db_host: $('#search_db_host').val(), search_db_port: $('#search_db_port').val(), search_db_user: $('#search_db_user').val() },
+    				    $.getJSON(SEARCH_HOST+"/autocomplete", { term: request.term, table: $('#table').val(), search_db_name: $('#search_db_name').val(), search_db_host: $('#search_db_host').val(), search_db_port: $('#search_db_port').val(), search_db_user: $('#search_db_user').val() },
               		response);
   				},
                 minLength: 3,
@@ -90,7 +90,7 @@ $(function(){
       $(function() {
         $.ajax({
           type: "GET",
-          url: "/autocomplete",
+          url: SEARCH_HOST+"/autocomplete",
           data: {list:'tables', search_db_name: $('#search_db_name').val(), search_db_host: $('#search_db_host').val(), search_db_port: $('#search_db_port').val(), search_db_user: $('#search_db_user').val()},
           contentType: "application/json; charset=utf-8",
           dataType: "json",
@@ -130,7 +130,7 @@ $(function(){
     	  var offset = $('#offset') ? $('#offset').val() : 1;
     	  $.ajax({
             type: "GET",
-            url: "/search",
+            url: SEARCH_HOST+"/lbsearch",
             data: { term: search_term, table: $('#table').val(), page_size: $('#page_size').val(), offset: offset, search_db_name: $('#search_db_name').val(), search_db_host: $('#search_db_host').val(), search_db_port: $('#search_db_port').val(), search_db_user: $('#search_db_user').val() },
             contentType: "application/json; charset=utf-8",
             dataType: "json",
