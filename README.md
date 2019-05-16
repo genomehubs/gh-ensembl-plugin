@@ -1,6 +1,9 @@
-# LepBase
+# gh-ensembl-plugin
 
+Default Ensembl Plugin for GenomeHubs sites
 
-### *A multi-genome database for the Lepidoptera*
+This plugin is intended to be used for [GenomeHubs](http://genomehubs.org) Ensembl sites. 
 
-LepBase is a clade-specific genomic database for the Lepidoptera, offering tools and resources that focus on the specific needs of the lepidopteran research community, supporting the rapid adoption of genomic approaches to many questions and opening up this diverse clade to comparative analysis by the broader arthropod genomics community.  LepBase uses the [EnsEMBL Genomes](http://ensemblgenomes.org/) architecture to deliver integrated access to a rapidly growing corpus of genomic data for economically and biologically important species of butterflies and moths.
+Specific configuration details for individual sites can be overridden using another plugin loaded on top of this one.
+
+See [genomehubs.gitboot.io/genomehubs](https://genomehubs.gitbook.io/genomehubs/) for full documentation.
