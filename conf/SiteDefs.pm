@@ -23,8 +23,9 @@ sub update_conf {
 #  $SiteDefs::ASSEMBLY_GROUP_B = ['Bombyx_mori'];
   $SiteDefs::ASSEMBLY_GROUP_B_TITLE = 'Assembly only';
   $SiteDefs::ASSEMBLY_GROUP_B_TEMPLATE = '_list_template';
+  $SiteDefs::ASSEMBLY_GROUP_C_TITLE = 'Other Assemblies';
+  $SiteDefs::ASSEMBLY_GROUP_C_TEMPLATE = '_list_template';
 }
 
 
 1;
-
