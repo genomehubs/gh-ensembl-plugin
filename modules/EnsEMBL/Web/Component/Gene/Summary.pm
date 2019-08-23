@@ -50,12 +50,12 @@ sub status_hints    { return undef; }
 sub content {
   my $self = shift;
   my $object = $self->object;
-  
+
   return sprintf '<p>%s</p>', encode_entities($object->Obj->description) if $object->Obj->isa('Bio::EnsEMBL::Compara::Family'); # Grab the description of the object
   return sprintf '<p>%s</p>', 'This identifier is not in the current EnsEMBL database' if $object->Obj->isa('Bio::EnsEMBL::ArchiveStableId');
 
   my $html = "";
- 
+
   my @warnings = $self->status_warnings;
   if(@warnings>1 and $warnings[0] and $warnings[1]) {
     $html .= $self->_info_panel($warnings[2]||'warning',
@@ -65,13 +65,12 @@ sub content {
   if(@hints>1 and $hints[0] and $hints[1]) {
     $html .= $self->_hint($hints[2],$hints[0],$hints[1]);
   }
-  
+
   $html .= $self->transcript_table;
 
 ## Begin GenomeHubs Modifications
 
   my $hub         = $self->hub;
-  my $object      = $self->object;
   my $species     = $hub->species;
   my $table       = $self->new_twocol;
   my $gene        = $object->Obj;

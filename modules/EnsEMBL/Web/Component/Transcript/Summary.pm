@@ -52,7 +52,7 @@ sub content {
   return sprintf '<p>%s</p>', $object->Obj->description if $object->Obj->isa('EnsEMBL::Web::Fake');
 
   my $html = "";
- 
+
   if ($object->Obj->isa('Bio::EnsEMBL::Transcript')) {
 
     my @warnings = $self->status_warnings;
@@ -76,13 +76,12 @@ sub content {
       $text     = 'Transcript';
     }
     my $url = $self->hub->url({'action' => 'Idhistory', 'function' => $function});
-    $html = sprintf '<p>This transcript is not in the current gene set. Previous versions of the %s may be available on the <a href="%s">%s History page</a>.</p>', lc($text), $url, $text; 
+    $html = sprintf '<p>This transcript is not in the current gene set. Previous versions of the %s may be available on the <a href="%s">%s History page</a>.</p>', lc($text), $url, $text;
   }
 
 ## Begin GenomeHubs Modifications
 
   my $hub         = $self->hub;
-  my $object      = $self->object;
   my $species     = $hub->species;
   my $table       = $self->new_twocol;
   my $gene        = $object->gene;
