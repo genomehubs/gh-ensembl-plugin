@@ -16,8 +16,8 @@
    id="svg4669"
    sodipodi:docname="genomehubs.logo.svg"
    inkscape:export-filename="/Users/rchallis/genomehubs.logo.png"
-   inkscape:export-xdpi="72"
-   inkscape:export-ydpi="72"
+   inkscape:export-xdpi="160"
+   inkscape:export-ydpi="160"
    inkscape:version="0.92.2 5c3e80d, 2017-08-06"
    enable-background="new">
   <defs
@@ -85,7 +85,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.4708689"
-     inkscape:cx="150.98089"
+     inkscape:cx="78.132023"
      inkscape:cy="153.69608"
      inkscape:document-units="mm"
      inkscape:current-layer="layer3"
@@ -96,8 +96,8 @@
      inkscape:snap-object-midpoints="true"
      inkscape:window-width="1390"
      inkscape:window-height="954"
-     inkscape:window-x="45"
-     inkscape:window-y="0"
+     inkscape:window-x="0"
+     inkscape:window-y="847"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata4666">
@@ -107,7 +107,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>

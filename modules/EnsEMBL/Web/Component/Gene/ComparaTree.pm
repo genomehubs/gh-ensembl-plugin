@@ -474,20 +474,25 @@ sub collapsed_nodes {
       next if $internal_node->is_leaf;
       next unless $internal_node->species_tree_node;
       my $taxon = $internal_node->species_tree_node->taxon;
-      my $this_rank = $taxon->rank;
-      if ($this_rank eq 'no rank') {
-        # We traverse the taxonomy upwards until we find a rank, and get
-        # the rank just below instead
-        while ($this_rank eq 'no rank') {
-          $taxon = $taxon->parent;
-          last unless $taxon;
-          $this_rank = $taxon->rank;
+## BEGIN GENOMEHUBS MODIFICATIONS...
+      my $this_rank;
+      if ($taxon){
+        my $this_rank = $taxon->rank;
+        if ($this_rank eq 'no rank') {
+          # We traverse the taxonomy upwards until we find a rank, and get
+          # the rank just below instead
+          while ($this_rank eq 'no rank') {
+            $taxon = $taxon->parent;
+            last unless $taxon;
+            $this_rank = $taxon->rank;
+          }
+          $this_rank = $rank_pos{$this_rank}-1;
+          #warn sprintf("Mapped 'no rank' %s to %s\n", $internal_node->species_tree_node->taxon->name, $rank_order[$this_rank]);
+        } else {
+          $this_rank = $rank_pos{$this_rank};
         }
-        $this_rank = $rank_pos{$this_rank}-1;
-        #warn sprintf("Mapped 'no rank' %s to %s\n", $internal_node->species_tree_node->taxon->name, $rank_order[$this_rank]);
-      } else {
-        $this_rank = $rank_pos{$this_rank};
       }
+## ...END GENOMEHUBS MODIFICATIONS
       $this_rank = scalar(@rank_order) unless defined $this_rank;
       if ($this_rank <= $rank_pos{$asked_rank}) {
         $collapsed_nodes{$internal_node->node_id} = $internal_node;
