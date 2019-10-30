@@ -29,8 +29,8 @@
 }
 
 .lb-extra-species-box {
-  width: 15%;
-  min-width:220px;
+  width: 25%;
+  min-width: 410px;
   display: inline-table;
   text-align: left;
   background-color: [[PAGE_BG]];
