@@ -64,10 +64,6 @@ sub content {
   my $species         = $self->species;
  ## BEGIN LEPBASE MODIFICATIONS...
   my $species_defs    = $self->species_defs;
-  my $search_db_name  = $species_defs->SEARCH_DB_NAME;
-  my $search_db_host  = $species_defs->SEARCH_DB_HOST;
-  my $search_db_port  = $species_defs->SEARCH_DB_PORT;
-  my $search_db_user  = $species_defs->SEARCH_DB_USER;
   my $search_table    = $species ? lc $species : 'multi';
   my $search_url      = sprintf '%s%s/psychic', $self->home_url, $species || 'Multi';
   my $options         = $self->search_options;
@@ -96,10 +92,6 @@ sub content {
             <label class="hidden" for="se_q">Search terms</label>
             <input class="query inactive" id="se_q" type="text" name="q" value="$options_hash{$search_code}{'label'}&hellip;" data-role="none" />
             <input type="hidden" id="search_table" name="table" value ="$search_table" />
-            <input type="hidden" id="search_db_name" name="search_db_name" value ="$search_db_name" />
-            <input type="hidden" id="search_db_host" name="search_db_host" value ="$search_db_host" />
-            <input type="hidden" id="search_db_port" name="search_db_port" value ="$search_db_port" />
-            <input type="hidden" id="search_db_user" name="search_db_user" value ="$search_db_user" />
           </div>
           <!--div class="button"><input type="image" src="${img_url}16/search.png" alt="Search&nbsp;&raquo;" /></div-->
         </div>
